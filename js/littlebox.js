@@ -1,0 +1,10 @@
+/*!
+ * Plugin Name: jQuery Littlebox for WP
+ * Plugin URI: http://blog.ilooker.tk/
+ * Description: Modded from Joel Vardy's lightbox
+ * Version: 1.0
+ * Author: Rufus
+ * Author URI: http://blog.ilooker.tk/
+ * Copyright 2011
+ */
+function littlebox(a,b,d){if(a==="create"){$("body").append('<div id="littlebox"><div id="littlebox_content"><a id="littlebox_close" href="javascript:void(0);" onclick="littlebox(\'remove\');" title="Close">X</a><img alt="'+b+'" src="'+d+'" /><h3>'+b+"</h3></div></div>");var a=$("#littlebox"),c=$("#littlebox_content"),e=$("#littlebox_content img");popupStatus=1;a.css({background:"rgba(0,0,0,0.5)",display:"none",height:$(document).height(),left:"0%",margin:"0",padding:"0",position:"absolute",top:"0%", width:$(document).width(),"z-index":"1201"});c.css({background:"#ffffff",color:"#101010",display:"none",left:"50%",padding:"15px 15px 10px",position:"fixed",top:"50%","border-radius":"8px"});$("#littlebox_close").css({background:"#ff8900","border-radius":"8px",color:"#ffffff",display:"block","font-size":"16px",height:"19px",padding:"6px",position:"absolute",right:"-7px","text-align":"center","text-decoration":"none",top:"-7px",width:"19px"});$("h3",c).css({color:"#101010","margin-top":"5px"});a.fadeIn("300"); $("#littlebox_content img").load(function(){c.css({display:"block",position:"absolute",visibility:"hidden","max-width":"80%","max-height":"80%"});e.css({"max-width":"90%","max-height":"90%"});var a=c.outerHeight()/2*-1,b=c.outerWidth()/2*-1;c.css({display:"none","margin-top":a,"margin-left":b,position:"fixed",visibility:"visible","text-align":"center"});c.fadeIn("500")})}else a==="remove"&&$("#littlebox").remove()} $(function(){$(".entry img:not(a>img)").live("hover",function(){var a=[this.title,this.getAttribute("alt"),document.title,"\u5168\u5c4f\u67e5\u770b",this.getAttribute("src")],b=null,d;for(d in a)if(a[d]){b=a[d];break}$(this).wrap("<a href="+a[4]+' class="littlebox" title="'+b+'"></a>').click(function(){littlebox("create",b,a[4]);return!1})})});$(document).keypress(function(a){a.keyCode==27&&popupStatus==1&&littlebox("remove")});
